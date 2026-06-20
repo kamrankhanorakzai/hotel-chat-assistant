@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearl Collection — Hotels in Pakistan</title>
+<meta name="description" content="Three independent hotels in Peshawar, Lahore and Islamabad, booked from one front desk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2420;
+    --forest:#1F3A30;
+    --forest-deep:#152A22;
+    --forest-pale:#EAF0EB;
+    --bg:#F6F4EC;
+    --surface:#FFFFFF;
+    --gold:#B08D57;
+    --gold-deep:#8C6F3F;
+    --gold-pale:#F3E9D6;
+    --line:#E3DFD0;
+    --soft:#5E6760;
+    --ok:#3C8C5C;
+    --rose:#B0573F;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow-soft:0 18px 40px rgba(21,42,34,0.10);
+    --shadow-lift:0 24px 60px rgba(21,42,34,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Fraunces',serif;}
+  .eyebrow{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--gold-deep);
+    display:inline-block;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:0 6vw;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;}
+  button{font-family:inherit;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    background:var(--forest-deep);
+    color:#E9E5D6;
+    font-size:12.5px;
+    padding:8px 6vw;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .topbar span{opacity:0.85;}
+  .topbar .topbar-props{display:flex;gap:16px;}
+  @media (max-width:700px){.topbar .topbar-props{display:none;}}
+
+  /* ---------- Nav ---------- */
+  nav{
+    background:var(--forest);
+    color:#fff;
+    padding:16px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:500;
+    box-shadow:0 1px 0 rgba(255,255,255,0.06);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:20px;
+  }
+  .brand .mark{
+    width:32px;height:32px;
+    border:1.5px solid var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+    color:var(--gold);
+    flex-shrink:0;
+  }
+  .brand .sub{
+    display:block;
+    font-family:'Work Sans',sans-serif;
+    font-weight:500;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#B7C2BA;
+    margin-top:1px;
+  }
+  .navlinks{
+    display:flex;
+    gap:26px;
+    font-size:14px;
+    font-weight:500;
+  }
+  .navlinks a{opacity:0.82;transition:opacity 0.15s;position:relative;}
+  .navlinks a:hover{opacity:1;}
+  .nav-right{display:flex;align-items:center;gap:14px;}
+  .nav-cta{
+    background:var(--gold);
+    color:var(--forest-deep);
+    padding:10px 18px;
+    border-radius:9px;
+    font-weight:600;
+    font-size:13.5px;
+    border:none;
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(176,141,87,0.35);}
+  .nav-burger{display:none;background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;width:38px;height:38px;border-radius:8px;cursor:pointer;align-items:center;justify-content:center;}
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .nav-burger{display:flex;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 85% 18%, rgba(176,141,87,0.20), transparent 45%),
+      radial-gradient(circle at 8% 92%, rgba(176,141,87,0.10), transparent 40%),
+      linear-gradient(165deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color:#F3F0E6;
+    padding:8vh 6vw 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-6%;top:-12%;
+    width:560px;height:560px;
+    border:1px solid rgba(176,141,87,0.22);
+    border-radius:50%;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right:8%;bottom:6%;
+    width:300px;height:300px;
+    border:1px solid rgba(176,141,87,0.16);
+    border-radius:50%;
+  }
+  .hero-inner{max-width:640px;position:relative;z-index:2;padding-bottom:6vh;}
+  .stars{color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .stars .count{color:#C9C5B6;letter-spacing:normal;font-size:12.5px;font-weight:500;}
+  .hero h1{
+    font-size:clamp(36px,5.6vw,58px);
+    line-height:1.07;
+    font-weight:600;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{color:var(--gold);font-style:italic;}
+  .hero p{
+    font-size:16.5px;
+    line-height:1.65;
+    color:#D8D4C4;
+    max-width:480px;
+    margin:0 0 32px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:inherit;
+    font-size:14.5px;
+    font-weight:600;
+    padding:14px 24px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-gold{background:var(--gold);color:var(--forest-deep);}
+  .btn-gold:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(176,141,87,0.3);}
+  .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.35);color:#fff;}
+  .btn-outline:hover{border-color:#fff;}
+
+  /* ---------- Property switcher (signature element) ---------- */
+  .switcher{
+    position:relative;z-index:3;
+    margin-top:6vh;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--shadow-lift);
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  @media (max-width:860px){.switcher{grid-template-columns:1fr;}}
+  .stub{
+    background:rgba(255,255,255,0.04);
+    backdrop-filter:blur(6px);
+    padding:24px 26px;
+    cursor:pointer;
+    position:relative;
+    border-right:1px dashed rgba(255,255,255,0.16);
+    transition:background 0.2s ease;
+    text-align:left;
+  }
+  .stub:last-child{border-right:none;}
+  @media (max-width:860px){.stub{border-right:none;border-bottom:1px dashed rgba(255,255,255,0.16);}.stub:last-child{border-bottom:none;}}
+  .stub:hover{background:rgba(255,255,255,0.08);}
+  .stub.active{background:linear-gradient(180deg, rgba(176,141,87,0.16), rgba(176,141,87,0.04));}
+  .stub.active::before{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--gold);
+  }
+  .stub-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px;}
+  .stub-city{font-size:10.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+  .stub-name{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:4px 0 0;color:#fff;}
+  .stub-badge{
+    font-size:10px;font-weight:700;letter-spacing:0.04em;
+    background:rgba(255,255,255,0.1);color:#E9E5D6;
+    padding:4px 9px;border-radius:99px;flex-shrink:0;
+  }
+  .stub-badge.full{background:rgba(176,87,63,0.25);color:#F4C9BC;}
+  .stub-meta{display:flex;justify-content:space-between;align-items:flex-end;font-size:12.5px;color:#C9C5B6;}
+  .stub-from{font-family:'Fraunces',serif;font-size:20px;color:#fff;}
+  .stub-from span{font-size:11px;color:#9CA89E;font-family:'Work Sans',sans-serif;}
+  .stub-rating{display:flex;align-items:center;gap:5px;color:var(--gold);font-size:12.5px;}
+
+  /* ---------- Section heads ---------- */
+  .section{padding:9vh 6vw;}
+  .section-head{max-width:580px;margin-bottom:44px;}
+  .section-head h2{
+    font-size:clamp(27px,3.4vw,38px);
+    margin:10px 0 0;
+    font-weight:600;
+    line-height:1.15;
+  }
+  .section-head p{color:var(--soft);font-size:15.5px;margin-top:12px;line-height:1.6;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* ---------- Properties grid (overview cards) ---------- */
+  .props-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media (max-width:980px){.props-grid{grid-template-columns:1fr;}}
+  .prop-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    cursor:pointer;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .prop-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
+  .prop-card.is-selected{box-shadow:0 0 0 2px var(--gold), var(--shadow-soft);}
+  .prop-art{
+    height:158px;position:relative;
+    background:linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    overflow:hidden;
+  }
+  .prop-art svg{position:absolute;inset:0;width:100%;height:100%;}
+  .prop-art-tag{
+    position:absolute;bottom:12px;left:14px;
+    color:#fff;font-size:11px;font-weight:600;
+    background:rgba(0,0,0,0.28);backdrop-filter:blur(3px);
+    padding:5px 10px;border-radius:99px;letter-spacing:0.03em;
+  }
+  .prop-body{padding:20px 22px 22px;}
+  .prop-city{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);}
+  .prop-body h3{margin:5px 0 8px;font-size:19px;font-weight:600;}
+  .prop-body p{margin:0 0 16px;font-size:13.5px;color:var(--soft);line-height:1.55;min-height:42px;}
+  .prop-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px;}
+  .prop-from{font-family:'Fraunces',serif;font-size:18px;color:var(--forest);}
+  .prop-from span{font-size:11.5px;color:var(--soft);font-family:'Work Sans',sans-serif;}
+  .prop-rating{font-size:12.5px;color:var(--soft);display:flex;align-items:center;gap:4px;}
+  .prop-rating b{color:var(--ink);}
+
+  /* ---------- Filter chips for rooms section ---------- */
+  .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+  .chip{
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--soft);
+    padding:9px 16px;
+    border-radius:99px;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all 0.15s ease;
+  }
+  .chip:hover{border-color:var(--gold);color:var(--ink);}
+  .chip.active{background:var(--forest);border-color:var(--forest);color:#fff;}
+
+  /* ---------- Rooms ---------- */
+  .rooms-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media (max-width:900px){.rooms-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.rooms-grid{grid-template-columns:1fr;}}
+
+  .room-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .room-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-soft);}
+  .room-art{
+    height:128px;
+    position:relative;
+    background:linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+  }
+  .room-art svg{position:absolute;inset:0;width:100%;height:100%;}
+  .room-tier{
+    position:absolute;
+    top:12px;left:14px;
+    color:var(--gold);
+    font-family:'Fraunces',serif;
+    font-size:13px;
+    letter-spacing:0.04em;
+  }
+  .room-hotel-tag{
+    position:absolute;top:12px;right:14px;
+    font-size:10px;font-weight:600;color:#E9E5D6;
+    background:rgba(0,0,0,0.25);padding:4px 9px;border-radius:99px;
+  }
+  .room-body{padding:19px 20px 21px;}
+  .room-body h3{margin:0 0 6px;font-size:17.5px;font-weight:600;}
+  .room-body p{margin:0 0 16px;font-size:13.5px;color:var(--soft);line-height:1.5;min-height:40px;}
+  .room-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .price{font-family:'Fraunces',serif;font-size:20px;color:var(--forest);}
+  .price span{font-size:12px;color:var(--soft);font-family:'Work Sans',sans-serif;}
+  .occ{font-size:12.5px;color:var(--soft);}
+
+  /* ---------- Amenities ---------- */
+  .amen-band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .amen-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .amen-item{
+    background:var(--surface);
+    padding:22px 16px;
+    text-align:center;
+    font-size:13px;
+    font-weight:500;
+  }
+  .amen-item .ic{font-size:20px;display:block;margin-bottom:10px;}
+  @media (max-width:760px){.amen-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- Services ---------- */
+  .services-list{display:flex;flex-direction:column;}
+  .service-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    gap:20px;
+  }
+  .service-row:first-child{border-top:1px solid var(--line);}
+  .service-name{font-family:'Fraunces',serif;font-size:19px;}
+  .service-desc{font-size:13.5px;color:var(--soft);margin-top:4px;}
+  .service-price{font-size:16px;font-weight:600;color:var(--forest);flex-shrink:0;}
+
+  /* ---------- Reviews ---------- */
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media (max-width:900px){.reviews-grid{grid-template-columns:1fr;}}
+  .review-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+  }
+  .review-stars{color:var(--gold);font-size:13px;margin-bottom:14px;letter-spacing:2px;}
+  .review-card p{font-size:14.5px;line-height:1.6;margin:0 0 16px;color:var(--ink);}
+  .review-who{font-size:12.5px;color:var(--soft);font-weight:600;}
+  .review-who span{color:var(--gold-deep);}
+
+  /* ---------- Booking band ---------- */
+  .booking-band{
+    background:linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color:#F3F0E6;
+    border-radius:20px;
+    padding:54px 6vw;
+    margin:0 6vw 9vh;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .booking-band::before{
+    content:"";position:absolute;left:-8%;top:-30%;width:300px;height:300px;
+    border:1px solid rgba(176,141,87,0.2);border-radius:50%;
+  }
+  .booking-band h2{font-size:clamp(26px,3.4vw,36px);margin:0 0 14px;position:relative;}
+  .booking-band p{color:#D8D4C4;margin:0 0 28px;position:relative;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--forest-deep);
+    color:#C9C5B6;
+    padding:50px 6vw 30px;
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;gap:28px;}}
+  @media (max-width:520px){.foot-grid{grid-template-columns:1fr;gap:24px;}}
+  footer h4{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 14px;}
+  footer p, footer a{font-size:13.5px;line-height:1.85;}
+  footer a:hover{color:#fff;}
+  .foot-bottom{padding-top:20px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  /* ================= CHAT WIDGET ================= */
+  #chat-launcher{
+    position:fixed;bottom:26px;right:26px;
+    width:58px;height:58px;border-radius:50%;
+    background:var(--gold);color:var(--forest-deep);
+    border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px rgba(27,36,32,0.3);
+    z-index:1000;transition:transform 0.2s ease;
+  }
+  #chat-launcher:hover{transform:scale(1.06);}
+  #chat-launcher svg{width:24px;height:24px;}
+  #chat-launcher.is-open svg{display:none;}
+  #chat-launcher .close-ic{display:none;width:20px;height:20px;}
+  #chat-launcher.is-open .close-ic{display:block;}
+  .pulse-ring{
+    position:absolute;inset:-6px;border-radius:50%;
+    border:2px solid var(--gold);opacity:0;
+    animation:pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{opacity:0.5;transform:scale(0.85);}
+    70%{opacity:0;transform:scale(1.25);}
+    100%{opacity:0;transform:scale(1.25);}
+  }
+  #chat-panel{
+    position:fixed;bottom:96px;right:26px;
+    width:380px;max-width:calc(100vw - 32px);height:min(600px, 76vh);
+    background:var(--surface);border-radius:18px;
+    box-shadow:0 24px 70px rgba(27,36,32,0.3);
+    border:1px solid var(--line);
+    display:none;flex-direction:column;overflow:hidden;z-index:1000;
+  }
+  #chat-panel.open{display:flex;}
+  .chat-head{
+    padding:16px 18px;
+    background:linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color:#fff;
+    display:flex;align-items:center;justify-content:space-between;
+    flex-shrink:0;
+  }
+  .chat-head-title{display:flex;flex-direction:column;gap:2px;}
+  .chat-head-title .ttl{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;}
+  .chat-head-title .sub{font-size:11.5px;color:#B7C2BA;font-weight:400;}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:#8C9690;flex-shrink:0;}
+  .status-dot.live{background:var(--ok);box-shadow:0 0 0 3px rgba(60,140,92,0.25);}
+  .chat-head button{background:transparent;border:none;color:#fff;opacity:0.75;cursor:pointer;font-size:18px;line-height:1;padding:4px;}
+  .chat-head button:hover{opacity:1;}
+  #chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg);}
+  .msg{max-width:85%;padding:10px 13px;border-radius:13px;font-size:14px;line-height:1.45;word-wrap:break-word;white-space:pre-wrap;}
+  .msg.bot{background:var(--surface);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px;}
+  .msg.user{background:var(--gold);color:var(--forest-deep);align-self:flex-end;border-bottom-right-radius:4px;}
+  .msg.err{background:#FBEAE6;border:1px solid #E8BBA9;color:#8A3F22;align-self:flex-start;}
+  .typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:13px;}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--soft);animation:bounce 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:0.15s;}
+  .typing span:nth-child(3){animation-delay:0.3s;}
+  @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.5;}30%{transform:translateY(-4px);opacity:1;}}
+
+  /* Quick question chips inside chat */
+  #chat-suggestions{
+    display:flex;flex-direction:column;gap:7px;
+    padding:2px 0 4px;
+    align-self:stretch;
+  }
+  .sugg-label{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--soft);margin:6px 0 2px 2px;}
+  .sugg-btn{
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:10px 12px;
+    border-radius:11px;
+    font-size:13.5px;
+    cursor:pointer;
+    transition:border-color 0.15s ease, background 0.15s ease;
+    font-family:inherit;
+  }
+  .sugg-btn:hover{border-color:var(--gold);background:var(--gold-pale);}
+
+  #chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--surface);flex-shrink:0;}
+  #chat-input{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:14px;resize:none;outline:none;max-height:90px;}
+  #chat-input:focus{border-color:var(--gold);}
+  #chat-send{background:var(--forest);color:#fff;border:none;border-radius:10px;width:40px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #chat-send:disabled{opacity:0.4;cursor:not-allowed;}
+
+  /* Mobile nav drawer */
+  #mobile-nav{
+    display:none;
+    position:fixed;inset:0;background:rgba(21,42,34,0.6);
+    z-index:900;
+  }
+  #mobile-nav.open{display:block;}
+  #mobile-nav .panel{
+    position:absolute;top:0;right:0;bottom:0;width:78vw;max-width:320px;
+    background:var(--forest-deep);padding:24px 22px;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  #mobile-nav a{color:#E9E5D6;font-size:16px;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  #mobile-nav button.close-x{align-self:flex-end;background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>Pearl Collection — independent hotels across Pakistan</span>
+  <div class="topbar-props">
+    <span>Peshawar</span><span>Lahore</span><span>Islamabad</span>
+  </div>
+</div>
+
+<nav>
+  <div class="brand">
+    <span class="mark">PC</span>
+    <span>Pearl Collection<span class="sub">3 hotels · 1 front desk</span></span>
+  </div>
+  <div class="navlinks">
+    <a href="#properties">Hotels</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-cta" onclick="openChat()">Ask us</button>
+    <button class="nav-burger" onclick="toggleMobileNav(true)" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-nav" onclick="if(event.target===this)toggleMobileNav(false)">
+  <div class="panel">
+    <button class="close-x" onclick="toggleMobileNav(false)" aria-label="Close menu">✕</button>
+    <a href="#properties" onclick="toggleMobileNav(false)">Hotels</a>
+    <a href="#rooms" onclick="toggleMobileNav(false)">Rooms</a>
+    <a href="#amenities" onclick="toggleMobileNav(false)">Amenities</a>
+    <a href="#services" onclick="toggleMobileNav(false)">Services</a>
+    <a href="#reviews" onclick="toggleMobileNav(false)">Reviews</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="stars">★★★★★ <span class="count">4.6 average across 3 properties</span></div>
+      <h1>Three cities.<br>One <em>quiet standard</em>.</h1>
+      <p>Pearl Collection runs three independently-run hotels in Peshawar, Lahore and Islamabad — same front desk, same standard of care, different cities to wake up in.</p>
+      <div class="hero-cta">
+        <button class="btn btn-gold" onclick="document.getElementById('properties').scrollIntoView({behavior:'smooth'})">Browse hotels</button>
+        <button class="btn btn-outline" onclick="openChat()">Chat with the front desk</button>
+      </div>
+    </div>
+
+    <!-- Signature element: property switcher styled like ticket stubs -->
+    <div class="switcher" id="switcher"></div>
+  </div>
+</section>
+
+<!-- ================= PROPERTIES ================= -->
+<section class="section" id="properties">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The collection</div>
+      <h2 class="serif">Pick a city, then pick a room</h2>
+      <p>Every property keeps its own character — select one below and the rooms section will filter to match. The chat always knows which one you're asking about.</p>
+    </div>
+    <div class="props-grid" id="props-grid"></div>
+  </div>
+</section>
+
+<!-- ================= ROOMS ================= -->
+<section class="section" id="rooms" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Rooms &amp; rates</div>
+      <h2 class="serif">Eighteen room types, one quiet standard</h2>
+      <p>Every rate below is per night, base price before seasonal adjustments. Ask the chat for live availability on your dates.</p>
+    </div>
+    <div class="filter-row" id="filter-row"></div>
+    <div class="rooms-grid" id="rooms-grid"></div>
+  </div>
+</section>
+
+<!-- ================= AMENITIES ================= -->
+<div class="amen-band" id="amenities">
+  <div class="wrap section">
+    <div class="section-head">
+      <div class="eyebrow">In every room, every city</div>
+      <h2 class="serif">What's already there when you arrive</h2>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item"><span class="ic">📶</span>Free WiFi</div>
+      <div class="amen-item"><span class="ic">❄️</span>Air Conditioning</div>
+      <div class="amen-item"><span class="ic">🥤</span>Mini Bar</div>
+      <div class="amen-item"><span class="ic">📺</span>Flat-screen TV</div>
+      <div class="amen-item"><span class="ic">🌇</span>Balcony</div>
+      <div class="amen-item"><span class="ic">🛎️</span>Room Service</div>
+      <div class="amen-item"><span class="ic">☕</span>Coffee Maker</div>
+      <div class="amen-item"><span class="ic">🔒</span>Safe Box</div>
+      <div class="amen-item"><span class="ic">🛁</span>Bathtub</div>
+      <div class="amen-item"><span class="ic">🏙️</span>City View</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Add to your stay</div>
+      <h2 class="serif">Hotel services</h2>
+      <p>Available at all three properties — request through the chat or at check-in.</p>
+    </div>
+    <div class="services-list">
+      <div class="service-row">
+        <div><div class="service-name serif">Airport Pickup</div><div class="service-desc">One-way airport transfer</div></div>
+        <div class="service-price">$25.00</div>
+      </div>
+      <div class="service-row">
+        <div><div class="service-name serif">Spa Access</div><div class="service-desc">Full-day spa and sauna access</div></div>
+        <div class="service-price">$40.00</div>
+      </div>
+      <div class="service-row">
+        <div><div class="service-name serif">Laundry Service</div><div class="service-desc">Same-day laundry and pressing</div></div>
+        <div class="service-price">$15.00</div>
+      </div>
+      <div class="service-row">
+        <div><div class="service-name serif">Breakfast Buffet</div><div class="service-desc">Daily breakfast buffet, per person</div></div>
+        <div class="service-price">$12.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="section" id="reviews" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">From recent stays</div>
+      <h2 class="serif">What guests said</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Excellent service and very clean rooms. Will definitely come back!"</p>
+        <div class="review-who">Ahmed R. — <span>Grand Pearl, Peshawar</span></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p>"Good stay overall, breakfast could be improved."</p>
+        <div class="review-who">Sana M. — <span>Pearl Residency, Lahore</span></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"The suite was amazing, perfect for our family vacation."</p>
+        <div class="review-who">John S. — <span>Pearl Heights, Islamabad</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING CTA ================= -->
+<div class="wrap">
+  <div class="booking-band">
+    <h2 class="serif">Have dates in mind?</h2>
+    <p>Tell the front desk which city and they'll check what's open.</p>
+    <button class="btn btn-gold" onclick="openChat()">Start a chat</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <h4>Pearl Collection</h4>
+      <p>Three independently-run hotels in Peshawar, Lahore and Islamabad.<br>Open since 2018.</p>
+    </div>
+    <div>
+      <h4>Peshawar</h4>
+      <p>12 Mall Road<br><a href="tel:+9291234567">+92‑91‑1234567</a></p>
+    </div>
+    <div>
+      <h4>Lahore</h4>
+      <p>45 Liberty Road<br><a href="tel:+9242123456">+92‑42‑1234567</a></p>
+    </div>
+    <div>
+      <h4>Islamabad</h4>
+      <p>F‑7 Markaz<br><a href="tel:+9251123456">+92‑51‑1234567</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Pearl Collection. Demo content for testing purposes.</span>
+    <span><a href="mailto:info@pearlcollection.com">info@pearlcollection.com</a></span>
+  </div>
+</footer>
+
+<!-- Chat launcher -->
+<button id="chat-launcher" onclick="toggleChat()" aria-label="Open chat">
+  <div class="pulse-ring"></div>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  <svg class="close-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+
+<!-- Chat panel -->
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="chat-head-title">
+      <div class="ttl"><span class="status-dot live" id="status-dot"></span>Front Desk</div>
+      <div class="sub">Ask about any of our 3 hotels</div>
+    </div>
+    <div>
+      <button onclick="toggleChat()" title="Close" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div id="chat-body"></div>
+  <div id="chat-input-row">
+    <textarea id="chat-input" rows="1" placeholder="Ask about rooms, rates, availability…"></textarea>
+    <button id="chat-send" onclick="sendMessage()" aria-label="Send">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // ---------------------------------------------------------------
+  // SET YOUR N8N WEBHOOK URL HERE — this is the only line you need
+  // to edit. It is not visible or editable by site visitors.
+  // ---------------------------------------------------------------
+  const WEBHOOK_URL = "https://hajma324.app.n8n.cloud/webhook/e34be53b-85f0-4e80-b204-6ff18ef36b78";
+
+  // sessionId is intentionally NOT created here. It's assigned the moment
+  // a visitor sends their first chat message (see getOrCreateSessionId
+  // below), so visitors who never open the chat never get one.
+  let sessionId = null;
+
+  function getOrCreateSessionId(){
+    if(!sessionId){
+      sessionId = "hotel-" + Math.random().toString(36).slice(2, 10) + "-" + Date.now().toString(36);
+    }
+    return sessionId;
+  }
+
+  // ============================================================
+  // DATA — three properties, matching the multi-hotel DB schema
+  // (hotels -> room_types -> rooms). Replace with a live fetch
+  // to your API once it's ready; shape is kept simple on purpose.
+  // ============================================================
+  const HOTELS = [
+    {
+      id: "peshawar",
+      city: "Peshawar",
+      name: "Grand Pearl Hotel",
+      tag: "Flagship · 15 rooms",
+      desc: "The original property — quiet singles to a top-floor suite, four floors in the heart of the city.",
+      rating: 4.6,
+      from: 50,
+      available: true,
+      gradient: ["#1F3A30","#152A22"],
+      rooms: [
+        { tier:"I",   name:"Single",  desc:"Cozy room with one single bed, ideal for solo travelers.", price:50,  sleeps:1 },
+        { tier:"II",  name:"Double",  desc:"Comfortable room with one double bed.", price:75,  sleeps:2 },
+        { tier:"III", name:"Twin",    desc:"Two single beds, good for friends or colleagues.", price:75,  sleeps:2 },
+        { tier:"IV",  name:"Deluxe",  desc:"Spacious room with premium furnishings and a city view.", price:120, sleeps:3 },
+        { tier:"V",   name:"Suite",   desc:"Luxury suite with a separate living area.", price:200, sleeps:4 },
+        { tier:"VI",  name:"Family Room", desc:"Large room suited for families with kids.", price:150, sleeps:5 }
+      ]
+    },
+    {
+      id: "lahore",
+      city: "Lahore",
+      name: "Pearl Residency",
+      tag: "Business district · 22 rooms",
+      desc: "Closer to the airport and the business district, with larger work-friendly rooms throughout.",
+      rating: 4.5,
+      from: 60,
+      available: true,
+      gradient: ["#2A4438","#1B3128"],
+      rooms: [
+        { tier:"I",   name:"Single",  desc:"Compact room with a work desk, built for short business trips.", price:60,  sleeps:1 },
+        { tier:"II",  name:"Double",  desc:"Double bed room with a sitting nook.", price:85,  sleeps:2 },
+        { tier:"III", name:"Twin",    desc:"Two single beds with a shared workspace.", price:85,  sleeps:2 },
+        { tier:"IV",  name:"Executive", desc:"Business-tier room with lounge access included.", price:140, sleeps:3 },
+        { tier:"V",   name:"Suite",   desc:"Corner suite with a private meeting nook.", price:220, sleeps:4 },
+        { tier:"VI",  name:"Family Room", desc:"Connecting layout option, popular with relatives traveling together.", price:165, sleeps:5 }
+      ]
+    },
+    {
+      id: "islamabad",
+      city: "Islamabad",
+      name: "Pearl Heights",
+      tag: "Margalla views · 18 rooms",
+      desc: "The newest property, set against the Margalla Hills with the chain's best views from every upper floor.",
+      rating: 4.7,
+      from: 70,
+      available: false,
+      gradient: ["#22392F","#13261E"],
+      rooms: [
+        { tier:"I",   name:"Single",  desc:"Hillside-facing single, smallest footprint in the chain.", price:70,  sleeps:1 },
+        { tier:"II",  name:"Double",  desc:"Double bed room with a private balcony.", price:95,  sleeps:2 },
+        { tier:"III", name:"Twin",    desc:"Two single beds, both with hill views.", price:95,  sleeps:2 },
+        { tier:"IV",  name:"Deluxe",  desc:"Top-floor deluxe with full Margalla Hills view.", price:150, sleeps:3 },
+        { tier:"V",   name:"Suite",   desc:"Our largest suite, with a wraparound balcony.", price:260, sleeps:4 },
+        { tier:"VI",  name:"Family Room", desc:"Family-sized room with two view-facing windows.", price:180, sleeps:5 }
+      ]
+    }
+  ];
+
+  let activeFilter = "all"; // hotel id or "all"
+
+  function roomArtSVG(grad, seed){
+    const id = "g" + seed;
+    return `<svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${grad[0]}"/><stop offset="100%" stop-color="${grad[1]}"/>
+      </linearGradient></defs>
+      <rect width="300" height="130" fill="url(#${id})"/>
+      <circle cx="${40+seed*15}" cy="20" r="55" fill="none" stroke="rgba(176,141,87,0.25)" stroke-width="1"/>
+      <circle cx="270" cy="110" r="40" fill="none" stroke="rgba(176,141,87,0.18)" stroke-width="1"/>
+    </svg>`;
+  }
+
+  function renderSwitcher(){
+    const el = document.getElementById('switcher');
+    el.innerHTML = HOTELS.map((h,i) => `
+      <div class="stub" onclick="selectHotel('${h.id}')" role="button" tabindex="0">
+        <div class="stub-top">
+          <div>
+            <div class="stub-city">${h.city}</div>
+            <div class="stub-name serif">${h.name}</div>
+          </div>
+          <div class="stub-badge ${h.available ? '' : 'full'}">${h.available ? 'Rooms open' : 'Limited'}</div>
+        </div>
+        <div class="stub-meta">
+          <div><div class="stub-from serif">$${h.from}<span> /night from</span></div></div>
+          <div class="stub-rating">★ ${h.rating}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderProps(){
+    const el = document.getElementById('props-grid');
+    el.innerHTML = HOTELS.map((h,i) => `
+      <div class="prop-card" onclick="selectHotel('${h.id}'); document.getElementById('rooms').scrollIntoView({behavior:'smooth'})">
+        <div class="prop-art">${roomArtSVG(h.gradient, i)}<div class="prop-art-tag">${h.tag}</div></div>
+        <div class="prop-body">
+          <div class="prop-city">${h.city}</div>
+          <h3>${h.name}</h3>
+          <p>${h.desc}</p>
+          <div class="prop-foot">
+            <div class="prop-from">$${h.from}<span> /night from</span></div>
+            <div class="prop-rating">★ <b>${h.rating}</b></div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderFilters(){
+    const el = document.getElementById('filter-row');
+    const allChip = `<button class="chip ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">All hotels</button>`;
+    const chips = HOTELS.map(h => `<button class="chip ${activeFilter===h.id?'active':''}" onclick="setFilter('${h.id}')">${h.city}</button>`).join('');
+    el.innerHTML = allChip + chips;
+  }
+
+  function renderRooms(){
+    const el = document.getElementById('rooms-grid');
+    const hotels = activeFilter === 'all' ? HOTELS : HOTELS.filter(h => h.id === activeFilter);
+    let html = "";
+    hotels.forEach((h, hi) => {
+      h.rooms.forEach((r) => {
+        html += `
+          <div class="room-card">
+            <div class="room-art">${roomArtSVG(h.gradient, hi)}<div class="room-tier serif">${r.tier}</div>${activeFilter==='all' ? `<div class="room-hotel-tag">${h.city}</div>` : ''}</div>
+            <div class="room-body">
+              <h3>${r.name}</h3>
+              <p>${r.desc}</p>
+              <div class="room-foot"><div class="price">$${r.price}<span>/night</span></div><div class="occ">Sleeps ${r.sleeps}</div></div>
+            </div>
+          </div>`;
+      });
+    });
+    el.innerHTML = html;
+  }
+
+  function setFilter(id){
+    activeFilter = id;
+    renderFilters();
+    renderRooms();
+  }
+
+  function selectHotel(id){
+    setFilter(id);
+    document.querySelectorAll('.stub').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.prop-card').forEach(c => c.classList.remove('is-selected'));
+    const idx = HOTELS.findIndex(h => h.id === id);
+    const stub = document.querySelectorAll('.stub')[idx];
+    const card = document.querySelectorAll('.prop-card')[idx];
+    if(stub) stub.classList.add('active');
+    if(card) card.classList.add('is-selected');
+  }
+
+  renderSwitcher();
+  renderProps();
+  renderFilters();
+  renderRooms();
+
+  // ---------------- Mobile nav ----------------
+  function toggleMobileNav(open){
+    document.getElementById('mobile-nav').classList.toggle('open', open);
+  }
+
+  // ---------------- Chat ----------------
+  const DEFAULT_QUESTIONS = [
+    "What rooms are available in Lahore this weekend?",
+    "What's the cheapest room across all 3 hotels?",
+    "Does the Islamabad hotel have a view of the hills?",
+    "What services can I add to my booking?",
+    "Is breakfast included in the room price?"
+  ];
+
+  function openChat(){
+    document.getElementById('chat-panel').classList.add('open');
+    document.getElementById('chat-launcher').classList.add('is-open');
+  }
+  function toggleChat(){
+    const panel = document.getElementById('chat-panel');
+    const isOpen = panel.classList.toggle('open');
+    document.getElementById('chat-launcher').classList.toggle('is-open', isOpen);
+  }
+
+  function addMessage(kind, text){
+    const body = document.getElementById('chat-body');
+    const div = document.createElement('div');
+    div.className = 'msg ' + kind;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+    return div;
+  }
+
+  function renderSuggestions(){
+    const body = document.getElementById('chat-body');
+    const wrap = document.createElement('div');
+    wrap.id = 'chat-suggestions';
+    wrap.innerHTML = '<div class="sugg-label">Try asking</div>' +
+      DEFAULT_QUESTIONS.map(q => `<button class="sugg-btn" type="button">${q}</button>`).join('');
+    body.appendChild(wrap);
+    wrap.querySelectorAll('.sugg-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('chat-input').value = btn.textContent;
+        sendMessage();
+      });
+    });
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function removeSuggestions(){
+    const el = document.getElementById('chat-suggestions');
+    if(el) el.remove();
+  }
+
+  function showTyping(){
+    const body = document.getElementById('chat-body');
+    const div = document.createElement('div');
+    div.className = 'typing';
+    div.id = 'typing-indicator';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+  function hideTyping(){
+    const t = document.getElementById('typing-indicator');
+    if(t) t.remove();
+  }
+  function extractReply(data){
+    if(typeof data === 'string') return data;
+    if(Array.isArray(data) && data.length) return extractReply(data[0]);
+    if(data && typeof data === 'object'){
+      for(const key of ['reply','output','text','message','answer']){
+        if(typeof data[key] === 'string') return data[key];
+      }
+    }
+    return JSON.stringify(data);
+  }
+
+  async function sendMessage(){
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if(!text) return;
+
+    removeSuggestions();
+
+    if(!WEBHOOK_URL || WEBHOOK_URL.includes("your-n8n-instance")){
+      addMessage('user', text);
+      input.value = "";
+      addMessage('err', "The chat isn't connected yet — the site owner needs to set WEBHOOK_URL in the page code.");
+      return;
+    }
+
+    addMessage('user', text);
+    input.value = "";
+    input.style.height = 'auto';
+    document.getElementById('chat-send').disabled = true;
+    showTyping();
+
+    try{
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, sessionId: getOrCreateSessionId(), activeHotel: activeFilter })
+      });
+      hideTyping();
+      if(!res.ok){
+        addMessage('err', "Webhook responded with status " + res.status + ". Check the URL and that it accepts POST.");
+        return;
+      }
+      let data;
+      try{ data = await res.json(); } catch(e){ data = await res.text(); }
+      addMessage('bot', extractReply(data));
+    }catch(err){
+      hideTyping();
+      addMessage('err', "Couldn't reach the webhook. This is usually a CORS issue — check your backend allows requests from this page's origin.");
+    }finally{
+      document.getElementById('chat-send').disabled = false;
+    }
+  }
+
+  const chatInput = document.getElementById('chat-input');
+  chatInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  chatInput.addEventListener('input', function(){
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 90) + 'px';
+  });
+
+  addMessage('bot', "Welcome to Pearl Collection. I can help with rooms, rates, amenities and services across all three hotels — Peshawar, Lahore and Islamabad.");
+  renderSuggestions();
+</script>
+
+</body>
+</html>
