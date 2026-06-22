@@ -82,6 +82,16 @@ Every part of this is modular. The hotel data source can be swapped for a live b
 | Hotel data | Structured data — rooms, rates, amenities, services |
 | Frontend | Embeddable HTML/JS chat widget |
 
+## Repository structure
+
+- `index.html` — demo hotel website with the embedded chat widget interface.
+- `n8n-workflows/` — exported n8n workflow files for webhook handling, AI routing, memory, and document ingestion.
+  - `hotel-reception-workflow.json` — AI chat webhook and guest session workflow.
+  - `hotel-vector-db-workflow.json` — document ingestion and vector database workflow.
+- `rag-documentation/` — reference documents and knowledge source files for retrieval-augmented generation.
+- `chatbot-test-cases/` — evaluation scenarios, test prompts, and quality checks for the assistant.
+- `credentials.txt` — ignored local credentials and API keys used during development.
+
 ---
 
 ## Status
