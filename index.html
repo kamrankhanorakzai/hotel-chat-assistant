@@ -514,7 +514,7 @@
   .msg{max-width:85%;padding:10px 13px;border-radius:13px;font-size:14px;line-height:1.45;word-wrap:break-word;white-space:pre-wrap;}
   .msg.bot{background:var(--surface);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px;}
   .msg.user{background:var(--gold);color:var(--forest-deep);align-self:flex-end;border-bottom-right-radius:4px;}
-  .msg.err{background:#FBEAE6;border:1px solid #E8BBA9;color:#8A3F22;align-self:flex-start;}
+  .msg.err{background:rgba(60,140,92,0.12);border:1px solid rgba(60,140,92,0.25);color:var(--forest-deep);align-self:flex-start;}
   .typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:13px;}
   .typing span{width:6px;height:6px;border-radius:50%;background:var(--soft);animation:bounce 1.2s infinite;}
   .typing span:nth-child(2){animation-delay:0.15s;}
@@ -793,7 +793,7 @@
   const WEBHOOK_URL = "https://n8n-postgres.aiconsultix.com/webhook/e34be53b-85f0-4e80-b204-6ff18ef36b78";
 
 
-  
+
   // sessionId is intentionally NOT created here. It's assigned the moment
   // a visitor sends their first chat message (see getOrCreateSessionId
   // below), so visitors who never open the chat never get one.
@@ -995,11 +995,27 @@
     document.getElementById('chat-launcher').classList.toggle('is-open', isOpen);
   }
 
+  function renderMessageContent(raw){
+    const escapeHtml = str => String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    let text = escapeHtml(raw).trim();
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    return text;
+  }
+
   function addMessage(kind, text){
     const body = document.getElementById('chat-body');
     const div = document.createElement('div');
     div.className = 'msg ' + kind;
-    div.textContent = text;
+    if(kind === 'user'){
+      div.textContent = text;
+    } else {
+      div.innerHTML = renderMessageContent(text);
+    }
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
     return div;
@@ -1078,15 +1094,21 @@
       });
       hideTyping();
       if(!res.ok){
-        addMessage('err', "Webhook responded with status " + res.status + ". Check the URL and that it accepts POST.");
+        const msg = `Server responded with status ${res.status}. Please try again in a moment; our developer will restore the server if it remains down.`;
+        addMessage('err', msg);
         return;
       }
       let data;
       try{ data = await res.json(); } catch(e){ data = await res.text(); }
-      addMessage('bot', extractReply(data));
+      const reply = extractReply(data);
+      if(!reply){
+        addMessage('err', 'The server returned an empty response. Please try again later. Our developer is working to restore the service.');
+      } else {
+        addMessage('bot', reply);
+      }
     }catch(err){
       hideTyping();
-      addMessage('err', "Couldn't reach the webhook. This is usually a CORS issue — check your backend allows requests from this page's origin.");
+      addMessage('err', 'The webhook service is currently unavailable. Our developer will restore the server shortly. Please try again in a few minutes.');
     }finally{
       document.getElementById('chat-send').disabled = false;
     }
