@@ -3,7 +3,7 @@
 An AI-powered front desk for hotels — guests chat with an assistant that answers questions about rooms, rates, amenities, and services in real time, across one property or an entire chain.
 
 Built with **n8n** automation and an **AI Agent** model, embedded into any hotel website as a lightweight chat widget.
-
+ 
 ---
 
 ## What it does
